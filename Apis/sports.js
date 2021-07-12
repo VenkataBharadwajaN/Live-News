@@ -8,7 +8,7 @@ const mc = require('mongodb').MongoClient;
 
 require('dotenv').config()
 
-const url = process.env.url;
+const url = process.env.URL;
 
 const fetch = require('node-fetch');
 
@@ -29,7 +29,7 @@ mc.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true },(err,client)=
 
 setInterval(()=>
     {
-        let sportsurl=process.env.sportsurl
+        let sportsurl=process.env.SPORTSURL
 
         fetch(sportsurl)
         .then(res => res.json())

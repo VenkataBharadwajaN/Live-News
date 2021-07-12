@@ -12,7 +12,7 @@ const mc = require('mongodb').MongoClient;
 
 require('dotenv').config()
 
-const url = process.env.url;
+const url = process.env.URL;
 
 mc.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true },(err,client)=>{
 
@@ -31,7 +31,7 @@ mc.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true },(err,client)=
 setInterval( ()=>
     
     {       
-        let covidurl=process.env.covidurl
+        let covidurl=process.env.COVIDURL
 
         fetch(covidurl)
         .then(res => res.json())

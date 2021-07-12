@@ -8,7 +8,7 @@ const mc = require('mongodb').MongoClient;
 
 require('dotenv').config()
 
-const url = process.env.url;
+const url = process.env.URL;
 
 const fetch = require('node-fetch');
 
@@ -29,8 +29,8 @@ mc.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true },(err,client)=
 
 setInterval(()=>
     {
-        let technologyurl=process.env.technologyurl
-
+        let technologyurl=process.env.TECHNOLOGYURL
+        
         fetch(technologyurl)
         .then(res => res.json())
         .then(data => {
