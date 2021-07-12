@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit,OnDestroy {
 
     setTimeout(()=>{
       this.loaded=true;
-    },100);
+    },1000);
 
   }
 

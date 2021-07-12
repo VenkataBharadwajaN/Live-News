@@ -70,7 +70,7 @@ export class TopicPageComponent implements OnInit,OnDestroy {
 
         setTimeout(()=>{
           this.loaded=true;
-        },100);
+        },1000);
 
       },
       err=>{
