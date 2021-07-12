@@ -12,6 +12,7 @@ export class CovidComponent implements OnInit,OnDestroy {
   data:any[]=[];
   key:string;
   subscription:Subscription;
+  loaded=false;
   constructor(private dataService:DataService) { }
 
   ngOnInit(): void 
@@ -25,6 +26,10 @@ export class CovidComponent implements OnInit,OnDestroy {
         console.log("Error In Getting Covid Data",err);
       }
     )
+
+    setTimeout(()=>{
+      this.loaded=true;
+    },1000);
 
   }
 

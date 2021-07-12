@@ -1,21 +1,30 @@
-<div class="row mt-3">
-  <div class="col col-sm-12 col-md-6 mx-auto">
-          <input type="text" name="search" id="search" [(ngModel)]=key placeholder="Search By State Name" class="w-100" style="padding: 10px;">
+<div *ngIf="loaded==true">
+  <div class="row mt-3">
+    <div class="col col-sm-12 col-md-6 mx-auto">
+            <input type="text" name="search" id="search" [(ngModel)]=key placeholder="Search By State Name" class="w-100" style="padding: 10px;">
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
+      <div class="col" *ngFor="let item of data | covidsearch:key">
+        <div class="card h-100 scale-in-center">
+          <img [src]="item['url']" class="card-img-top w-100" alt="Hello" style="height: 250px;">
+          <div class="card-body" style="background-size: cover;background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0QDQ0NDQ0NDQ0NDQ0NDQ0NDQ8NDQ0NFREWFhURExUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NDw8PDisZFRktLTcrKystKy0tMi0rKystKysrLSstKzc3KzcrKysrLTcrKystKzcrKystKysrKzc3K//AABEIALEBHAMBIgACEQEDEQH/xAAaAAEBAQEBAQEAAAAAAAAAAAAAAQIDBAcF/8QAKBABAQACAQMDAwQDAAAAAAAAAAECEUEhMVFxgbESweFhkfDxMlKh/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/8QAFhEBAQEAAAAAAAAAAAAAAAAAAAER/9oADAMBAAIRAxEAPwD7VnnrpOtvH3Zww5vW1cMNdb1vN8tVltEqsZZcT+kDLJJExn88tALISNRUI1ISKACqgAACggqAIoAzWmUBNNaARQAAUQCgJamyopstRAaVIA0lWuWefE974Azy4nvfDOM/nkkXaKNSEixRZGokURQFRQUAAQAFAAEUEQUFQUBEWoAioilZWs0DYM0CqRQBNrsGc899J25qY4+y44+3ieE7+gHf0WRdLoCRpGgFRRBQUUAAAAUEEUBBQEFAQVBURUASrWUVKjTFBKKAJsoKG02gjXf0aU0BoUAWJFBQFRVRRAAUVFEAAAFAAAAEFRArLVZFQqs1FSppQEZrVSgjK1Kipazc0yyZ0mj2aFS1pCkhFAAVFABVZUFAAABQFQBQEUBAAEVEBFSioigJWVqVFSs1azQS1zyyXKpIyqSNaWRqYmDvsJBtkRdAAICiGwVqMxoFEAVYiiACigAAAgUAKIAipUERagqVCpais1zyq5VNIJI1INSAYxuQkaWRNaSRfj5FQRNlv4gp8JtLWdg1tqRMYuwaEVAWIsUVUUQAUURQBAAABFRARUoJWarNoqWsZVbWdIqKaWRBZGpEkW1ZEXbNyS1nbTL0M2/sW/t8pb+Iilv4jNqXJzt2K1a6YY81MMddb3+F3v0QXe/Rds2grSxmKDSpBUaVIAoiqgAAAAAAgIFZq1m0VLWLVtRBkU0gSLAtVDbNpaxaqKIbNHbLL9+J4c7kmWWvf/rnu2/qNNbtrthjrre/wmGMxm735vgk31vbieUF7+nyXLif0mWXE974ZFaWMxditrGY0IsVIqiqyoigAogIogCoACUS0EtZtLUFGVEAEtEW1i0tZULREtBdptNogdbfNrvjjMZ17837QkmE+b5/SGGNt+rLtxiLIY4763txDPPie9+0TPPfSdub9ozvQqrGY1sVViRYDTTMVUaEVBRFVFis7AaEUQBNgqVNpaKWs2lqAqAgAzaIWs2lZtUE2Ws2oLazsTYKiWs7QevDC2/Vl7Y8RnPP6uk/x5vn9Imef1dJ/h5/2/CWq0W+CQkUFWJFgLGokXaikRUFEWA0bTYqKqAKJs2CiJaC2s2psAEEFES0QtZtLWbQLWbS1m0FtZ2Ws7BdptLWbUFtc7klrOwfoTtPSMA002QEFaiANQBRYoIEWKAigqAABFARKAJUBAAArNQESs0AZrNAGalUQZrnkAM1kEH/2Q==');">
+            <h1 class="card-title text-center display-6 mb-3">{{item.state}}</h1>
+            <p class="card-title">Confirmed : {{item.confirmed}}</p>
+            <p class="card-title">Active : {{item.active}}</p>
+            <p class="card-title">Recovered : {{item.recovered}}</p>
+            <p class="card-title">Deaths : {{item.deaths}}</p>
+            <p class="card-title">Last Updated : {{item.lastupdatedtime}}</p>
+          </div>
+        </div>
+      </div>
   </div>
 </div>
-
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
-    <div class="col" *ngFor="let item of data | covidsearch:key">
-      <div class="card h-100 scale-in-center">
-        <img [src]="item['url']" class="card-img-top w-100" alt="Hello" style="height: 250px;">
-        <div class="card-body" style="background-size: cover;background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0QDQ0NDQ0NDQ0NDQ0NDQ0NDQ8NDQ0NFREWFhURExUYHSggGBolGxUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NDw8PDisZFRktLTcrKystKy0tMi0rKystKysrLSstKzc3KzcrKysrLTcrKystKzcrKystKysrKzc3K//AABEIALEBHAMBIgACEQEDEQH/xAAaAAEBAQEBAQEAAAAAAAAAAAAAAQIDBAcF/8QAKBABAQACAQMDAwQDAAAAAAAAAAECEUEhMVFxgbESweFhkfDxMlKh/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/8QAFhEBAQEAAAAAAAAAAAAAAAAAAAER/9oADAMBAAIRAxEAPwD7VnnrpOtvH3Zww5vW1cMNdb1vN8tVltEqsZZcT+kDLJJExn88tALISNRUI1ISKACqgAACggqAIoAzWmUBNNaARQAAUQCgJamyopstRAaVIA0lWuWefE974Azy4nvfDOM/nkkXaKNSEixRZGokURQFRQUAAQAFAAEUEQUFQUBEWoAioilZWs0DYM0CqRQBNrsGc899J25qY4+y44+3ieE7+gHf0WRdLoCRpGgFRRBQUUAAAAUEEUBBQEFAQVBURUASrWUVKjTFBKKAJsoKG02gjXf0aU0BoUAWJFBQFRVRRAAUVFEAAAFAAAAEFRArLVZFQqs1FSppQEZrVSgjK1Kipazc0yyZ0mj2aFS1pCkhFAAVFABVZUFAAABQFQBQEUBAAEVEBFSioigJWVqVFSs1azQS1zyyXKpIyqSNaWRqYmDvsJBtkRdAAICiGwVqMxoFEAVYiiACigAAAgUAKIAipUERagqVCpais1zyq5VNIJI1INSAYxuQkaWRNaSRfj5FQRNlv4gp8JtLWdg1tqRMYuwaEVAWIsUVUUQAUURQBAAABFRARUoJWarNoqWsZVbWdIqKaWRBZGpEkW1ZEXbNyS1nbTL0M2/sW/t8pb+Iilv4jNqXJzt2K1a6YY81MMddb3+F3v0QXe/Rds2grSxmKDSpBUaVIAoiqgAAAAAAgIFZq1m0VLWLVtRBkU0gSLAtVDbNpaxaqKIbNHbLL9+J4c7kmWWvf/rnu2/qNNbtrthjrre/wmGMxm735vgk31vbieUF7+nyXLif0mWXE974ZFaWMxditrGY0IsVIqiqyoigAogIogCoACUS0EtZtLUFGVEAEtEW1i0tZULREtBdptNogdbfNrvjjMZ17837QkmE+b5/SGGNt+rLtxiLIY4763txDPPie9+0TPPfSdub9ozvQqrGY1sVViRYDTTMVUaEVBRFVFis7AaEUQBNgqVNpaKWs2lqAqAgAzaIWs2lZtUE2Ws2oLazsTYKiWs7QevDC2/Vl7Y8RnPP6uk/x5vn9Imef1dJ/h5/2/CWq0W+CQkUFWJFgLGokXaikRUFEWA0bTYqKqAKJs2CiJaC2s2psAEEFES0QtZtLWbQLWbS1m0FtZ2Ws7BdptLWbUFtc7klrOwfoTtPSMA002QEFaiANQBRYoIEWKAigqAABFARKAJUBAAArNQESs0AZrNAGalUQZrnkAM1kEH/2Q==');">
-          <h1 class="card-title text-center display-6 mb-3">{{item.state}}</h1>
-          <p class="card-title">Confirmed : {{item.confirmed}}</p>
-          <p class="card-title">Active : {{item.active}}</p>
-          <p class="card-title">Recovered : {{item.recovered}}</p>
-          <p class="card-title">Deaths : {{item.deaths}}</p>
-          <p class="card-title">Last Updated : {{item.lastupdatedtime}}</p>
-        </div>
+<div *ngIf="loaded==false" class="loading">
+  <div class="d-flex justify-content-center m-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
     </div>
 </div>
