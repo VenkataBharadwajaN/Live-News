@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+.card{
+    cursor: pointer;
+}
+
+body{
+    font-family: 'Noto Serif', serif;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSRXXRfswX-JDz0XtkupL--ZbJ7584E4zW7g&usqp=CAU');   
+    background-size: cover; 
+}

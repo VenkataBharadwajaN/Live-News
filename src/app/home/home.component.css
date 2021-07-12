@@ -1,0 +1,20 @@
+@media (max-width: 576px) {
+    .carousel-item img {
+        height: 200px;
+    }
+}
+
+@media (min-width: 577px) {
+    .carousel-item img {
+        height: 400px;
+    }
+}
+
+/* .carousel-caption{
+    color:darkviolet;
+    color:rgb(70, 44, 185);
+} */
+
+input:focus{
+    outline: none;
+}

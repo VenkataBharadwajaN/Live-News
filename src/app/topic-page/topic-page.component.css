@@ -1,0 +1,15 @@
+@media (max-width: 576px) {
+    .carousel-item img {
+        height: 200px;
+    }
+}
+
+@media (min-width: 577px) {
+    .carousel-item img {
+        height: 400px;
+    }
+}
+
+input:focus{
+    outline: none;
+}

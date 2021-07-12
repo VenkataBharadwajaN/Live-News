@@ -1,0 +1,7 @@
+input:focus{
+    outline: none;
+}
+
+p{
+    font-size: larger;
+}

@@ -1,0 +1,84 @@
+<div class="row mt-3 mb-3">
+    <div class="col col-sm-12 col-md-6 mx-auto">
+            <input type="text" name="search" id="search" [(ngModel)]=key placeholder="Search By KeyWord / Publisher" class="w-100" style="padding: 10px;" (click)="p = 1">
+    </div>
+</div>
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+
+    <div class="carousel-indicators">
+      
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    
+    </div>
+    
+    <div class="carousel-inner">
+      <div class="carousel-item active" (click)=selected(topicDetails[0]?._id)>
+        <img [src]="topicDetails[0]?.urlToImage" class="d-block w-100" alt="..." *ngIf="topicDetails[0]?.urlToImage!=null">
+        <img src="https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png" class="d-block w-100" alt="..." *ngIf="topicDetails[0]?.urlToImage==null">
+        <div class="carousel-caption">
+          <h5>{{topicDetails[0]?.publishedAt | date}}</h5>
+          <p>{{topicDetails[0]?.title}}</p>
+        </div>
+      </div>
+
+      <div class="carousel-item" (click)=selected(topicDetails[1]._id)>
+        <img [src]="topicDetails[1]?.urlToImage" class="d-block w-100" alt="..." *ngIf="topicDetails[1]?.urlToImage!=null">
+        <img src="https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png" class="d-block w-100" alt="..." *ngIf="topicDetails[1]?.urlToImage==null">
+        <div class="carousel-caption">
+          <h5>{{topicDetails[1]?.publishedAt | date}}</h5>
+          <p>{{topicDetails[1]?.title}}</p>
+        </div>
+      </div>
+
+      <div class="carousel-item" (click)=selected(topicDetails[2]._id)>
+        <img [src]="topicDetails[2]?.urlToImage" class="d-block w-100" alt="..." *ngIf="topicDetails[2]?.urlToImage!=null">
+        <img src="https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png" class="d-block w-100" alt="..." *ngIf="topicDetails[2]?.urlToImage==null">
+        <div class="carousel-caption">
+          <h5>{{topicDetails[2]?.publishedAt | date}}</h5>
+          <p>{{topicDetails[2]?.title}}</p>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+
+</div>
+
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 mt-3">
+
+    <div class="col" *ngFor="let item of topicDetails  | newssearch:key | paginate: { itemsPerPage: 12, currentPage: p };let idx=index">
+
+        <div class="card h-100 scale-in-center" (click)='cardSelected(item["_id"])'>
+          
+            <img [src]=item?.urlToImage class="card-img-top" alt="..." style="height: 250px;" *ngIf="item?.urlToImage!=null">
+            <img src="https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png" class="card-img-top" alt="..." style="height: 250px;" *ngIf="item?.urlToImage==null">
+            
+            <div class="card-body">
+          
+                <h5 class="card-title">{{item?.title}}</h5>
+                <p class="card-text text-end">{{item?.publishedAt | date}}</p>
+          
+            </div>
+        
+        </div>
+      
+    </div> 
+</div>
+
+<div class="text-center mt-3">
+    <br>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
