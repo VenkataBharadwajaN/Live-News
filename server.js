@@ -17,7 +17,7 @@ const general=require('./Apis/general')
 const health=require('./Apis/health')
 const science=require('./Apis/science')
 const sports=require('./Apis/sports')
-const technology=require('./APIS/technology')
+const technology=require('./Apis/technology')
 
 app.use('/business',business)
 app.use('/covid',covid)
@@ -38,7 +38,8 @@ app.use((err,req,res,next)=>{
     res.send({message:`${err.message}`})
 })
 
-const port=process.env.PORT || 8080
+const port=process.env.PORT || 8000
+
 app.listen(port,()=>{
     console.log(`Server Working On Port No ${port} ...`);
 })

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 
 @Component({
@@ -7,17 +8,19 @@ import { DataService } from '../data.service';
   templateUrl: './topic-page.component.html',
   styleUrls: ['./topic-page.component.css']
 })
-export class TopicPageComponent implements OnInit {
+export class TopicPageComponent implements OnInit,OnDestroy {
 
   topicDetails:any[]=[];
   key:string;
   p=1;
+  loaded=false;
+  subscription:Subscription;
   constructor(private activatedRoute:ActivatedRoute,private router:Router,private dataServiceObject:DataService) { }
 
   ngOnInit(): void 
   {
     // console.log(this.router.url);
-    this.dataServiceObject.getTopicDetails(this.router.url).subscribe(
+    this.subscription=this.dataServiceObject.getTopicDetails(this.router.url).subscribe(
       res=>{
         console.log(res['message']);
         this.topicDetails=res['message'];
@@ -64,13 +67,23 @@ export class TopicPageComponent implements OnInit {
           // console.log("Updated Details Of Technology",this.dataServiceObject.technology);
 
         }
+
+        setTimeout(()=>{
+          this.loaded=true;
+        },100);
+
       },
       err=>{
         console.log("Error In Getting Business Details",err);
       }
     )  
   }
-  
+
+  ngOnDestroy():void
+  {
+    this.subscription.unsubscribe();
+  }
+
   cardSelected(id)
   {
     // console.log(this.router.url);
@@ -84,11 +97,5 @@ export class TopicPageComponent implements OnInit {
     this.router.navigateByUrl(`/${this.router.url}/${id}`);
   }
 
-  // cardSelected(id)
-  // {
-  //   console.log(this.routerService.url,id);
-  //   console.log(`/${this.routerService.url}/${id}`);
-  //   this.routerService.navigateByUrl(`/general/${id}`);
-  // }
 
 }

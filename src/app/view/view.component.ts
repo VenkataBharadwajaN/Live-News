@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 
 @Component({
@@ -11,19 +12,23 @@ export class ViewComponent implements OnInit,OnDestroy {
 
   data;
   suggesstions;
+  subscription:Subscription;
+  loaded=false;
   constructor(private activatedRoute:ActivatedRoute,private routerService:Router,private dataService:DataService) { }
 
   ngOnInit(): void 
   {
     
-    this.activatedRoute.params.subscribe(
+    this.subscription=this.activatedRoute.params.subscribe(
       params=>
       {
+        this.loaded=false;
         // console.log("Parameters",params);
         // console.log(this.routerService.url);
         window.scrollTo(0, 0)
         let temp=this.routerService.url.split('/')
         // console.log(temp[1])
+        
         if(temp[1]=='business')
         {
           if(this.dataService.business.length==0 || this.dataService.businessvisit==0)
@@ -181,6 +186,9 @@ export class ViewComponent implements OnInit,OnDestroy {
           }  
         }
         
+        setTimeout(()=>{
+          this.loaded=true;
+        },100);
       },
 
       err=>{
@@ -199,7 +207,6 @@ export class ViewComponent implements OnInit,OnDestroy {
           console.log("Error In Suggesstions ",err);
         }
       );
-
   }
 
   ngOnDestroy()
@@ -211,6 +218,7 @@ export class ViewComponent implements OnInit,OnDestroy {
     this.dataService.sportsvisit=0;
     this.dataService.technologyvisit=0;
     this.dataService.generalvisit=0;
+    this.subscription.unsubscribe();
   }
 
   view(title)

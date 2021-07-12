@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 
 @Component({
@@ -7,18 +8,19 @@ import { DataService } from '../data.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,OnDestroy {
 
   key:string;
   p=1;
   generalDetails:any[]=[];
-
+  subscription:Subscription;
+  loaded=false;
   constructor(private dataServiceObject:DataService,private routerService:Router) { }
 
   ngOnInit(): void 
   {
 
-    this.dataServiceObject.getgeneralData().subscribe(
+    this.subscription=this.dataServiceObject.getgeneralData().subscribe(
       data=>{
         this.generalDetails=data['message'];
         console.log(data);
@@ -28,6 +30,15 @@ export class HomeComponent implements OnInit {
       }
     )
 
+    setTimeout(()=>{
+      this.loaded=true;
+    },100);
+
+  }
+
+  ngOnDestroy():void
+  {
+    this.subscription.unsubscribe();
   }
 
   selected(id)

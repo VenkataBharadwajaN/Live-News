@@ -1,4 +1,4 @@
-<div class="row g-2 mt-3">
+<div class="row g-2 mt-3" *ngIf="loaded==true">
     <div class="col-lg-7">
         <h1 class="display-5">{{data?.title}}</h1>
         <p style="font-size:x-large;">Published At : {{data?.publishedAt | date}}</p>
@@ -19,4 +19,12 @@
         </ul>
     </div>
 
+</div>
+
+<div *ngIf="loaded==false" class="loading">
+    <div class="d-flex justify-content-center m-5">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
 </div>
