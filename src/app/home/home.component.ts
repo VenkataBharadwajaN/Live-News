@@ -55,5 +55,9 @@ export class HomeComponent implements OnInit,OnDestroy {
     this.routerService.navigateByUrl(`/general/${id}`);
   }
 
+  onPageChange(page: number) {
+    window.scrollTo(0, 0);
+    this.p = page;
+  }
 
 }

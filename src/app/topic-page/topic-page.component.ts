@@ -19,6 +19,7 @@ export class TopicPageComponent implements OnInit,OnDestroy {
 
   ngOnInit(): void 
   {
+    window.scrollTo(0, 0)
     // console.log(this.router.url);
     this.subscription=this.dataServiceObject.getTopicDetails(this.router.url).subscribe(
       res=>{
@@ -97,5 +98,11 @@ export class TopicPageComponent implements OnInit,OnDestroy {
     this.router.navigateByUrl(`/${this.router.url}/${id}`);
   }
 
+  onPageChange(page: number) {
+    
+    window.scrollTo(0, 0);    
+    this.p = page;
+ }
+ 
 
 }
