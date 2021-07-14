@@ -41,7 +41,6 @@ setInterval(()=>
         .catch(err => {
             console.log("Error In Getting Science Articles",err.message);
         });
-
     },7200000);
 
 science.get("/getscienceArticles",expressAsyncHandler( async (req,res) => {

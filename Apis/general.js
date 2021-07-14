@@ -41,7 +41,6 @@ setInterval(()=>
         .catch(err => {
             console.log("Error In Getting General Articles",err.message);
         });
-
     },7200000);
 
 general.get("/getgeneralArticles",expressAsyncHandler( async (req,res) => {
