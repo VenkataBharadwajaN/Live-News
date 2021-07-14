@@ -40,7 +40,8 @@ setInterval(()=>
         .catch(err => {
             console.log("Error In Getting Business Articles",err.message);
         });
-    },7200000);
+        
+    },300000);
 
 business.get("/getbusinessArticles",expressAsyncHandler( async (req,res) => {
     
