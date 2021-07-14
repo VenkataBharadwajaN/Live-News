@@ -41,7 +41,7 @@ setInterval(()=>
         .catch(err => {
             console.log("Error In Getting Technology Articles",err.message);
         });
-    },300000);
+    },1800000);
 
 technology.get("/gettechnologyArticles",expressAsyncHandler( async (req,res) => {
     

@@ -51,7 +51,7 @@ setInterval( ()=>
         .catch(err => {
             console.log(err.message);
         });
-    },300000);
+    },1800000);
 
 covid.get("/getcovidData",expressAsyncHandler( async (req,res) => {
     

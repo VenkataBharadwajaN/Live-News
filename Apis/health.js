@@ -41,7 +41,7 @@ setInterval(()=>
         .catch(err => {
             console.log("Error In Getting Health Articles",err.message);
         });
-    },300000);
+    },1800000);
 
 health.get("/gethealthArticles",expressAsyncHandler( async (req,res) => {
     
