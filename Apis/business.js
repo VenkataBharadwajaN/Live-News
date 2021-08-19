@@ -50,7 +50,7 @@ setInterval(()=>
             console.log("Error In Getting Business Articles",err.message);
         });
 
-    },18000);
+    },1800000);
 
 business.get("/getbusinessArticles",expressAsyncHandler( async (req,res) => {
     
