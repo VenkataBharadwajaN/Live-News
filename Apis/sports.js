@@ -53,7 +53,7 @@ setInterval(()=>
         .catch(err => {
             console.log("Error In Getting Sports Articles",err.message);
         });
-    },18000);
+    },1800000);
 
 sports.get("/getsportsArticles",expressAsyncHandler( async (req,res) => {
     

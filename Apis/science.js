@@ -53,7 +53,7 @@ setInterval(()=>
         .catch(err => {
             console.log("Error In Getting Science Articles",err.message);
         });
-    },18000);
+    },1800000);
 
 science.get("/getscienceArticles",expressAsyncHandler( async (req,res) => {
     

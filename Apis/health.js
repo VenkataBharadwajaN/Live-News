@@ -34,7 +34,7 @@ setInterval(()=>
         fetch(healthurl)
         .then(res => res.json())
         .then(data => {
-
+            
             console.log("Fetched Health Articles ");
             if(data['status']=="ok")
             {
@@ -53,7 +53,7 @@ setInterval(()=>
         .catch(err => {
             console.log("Error In Getting Health Articles",err.message);
         });
-    },18000);
+    },1800000);
 
 health.get("/gethealthArticles",expressAsyncHandler( async (req,res) => {
     

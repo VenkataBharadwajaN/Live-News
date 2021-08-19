@@ -35,7 +35,7 @@ setInterval(()=>
         .then(res => res.json())
         .then(data => {
             console.log("Fetched Technology Articles ");
-
+            
             if(data['status']=="ok")
             {
                 technologyObject.deleteMany({});
@@ -53,7 +53,7 @@ setInterval(()=>
         .catch(err => {
             console.log("Error In Getting Technology Articles",err.message);
         });
-    },18000);
+    },1800000);
 
 technology.get("/gettechnologyArticles",expressAsyncHandler( async (req,res) => {
     

@@ -50,7 +50,7 @@ setInterval(()=>
         .catch(err => {
             console.log("Error In Getting Entertainment Articles",err.message);
         });
-    },18000);
+    },1800000);
 
 entertainment.get("/getentertainmentArticles",expressAsyncHandler( async (req,res) => {
     
