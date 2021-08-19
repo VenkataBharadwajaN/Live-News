@@ -34,14 +34,26 @@ setInterval(()=>
         fetch(scienceurl)
         .then(res => res.json())
         .then(data => {
+            
             console.log("Fetched Science Articles ");
-            scienceObject.deleteMany({});
-            scienceObject.insertMany(data['articles']);
+            if(data['status']=="ok")
+            {
+                scienceObject.deleteMany({});
+                scienceObject.insertMany(data['articles']);
+            }
+            else
+            {
+                console.log(data);
+                console.log("Issue in Updating Science Articles ");
+            }
+
+            // scienceObject.deleteMany({});
+            // scienceObject.insertMany(data['articles']);
         })
         .catch(err => {
             console.log("Error In Getting Science Articles",err.message);
         });
-    },1800000);
+    },18000);
 
 science.get("/getscienceArticles",expressAsyncHandler( async (req,res) => {
     

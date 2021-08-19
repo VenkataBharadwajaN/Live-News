@@ -42,6 +42,7 @@ setInterval(()=>
             }
             else
             {
+                console.log(data);
                 console.log("Issue in Updating Business Articles ");
             }
         })
@@ -49,7 +50,7 @@ setInterval(()=>
             console.log("Error In Getting Business Articles",err.message);
         });
 
-    },1800000);
+    },18000);
 
 business.get("/getbusinessArticles",expressAsyncHandler( async (req,res) => {
     

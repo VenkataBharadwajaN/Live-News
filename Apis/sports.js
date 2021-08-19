@@ -35,13 +35,25 @@ setInterval(()=>
         .then(res => res.json())
         .then(data => {
             console.log("Fetched Sports Articles ");
-            sportsObject.deleteMany({});
-            sportsObject.insertMany(data['articles']);
+
+            if(data['status']=="ok")
+            {
+                sportsObject.deleteMany({});
+                sportsObject.insertMany(data['articles']);
+            }
+            else
+            {
+                console.log(data);
+                console.log("Issue in Updating Sports Articles ");
+            }
+
+            // sportsObject.deleteMany({});
+            // sportsObject.insertMany(data['articles']);
         })
         .catch(err => {
             console.log("Error In Getting Sports Articles",err.message);
         });
-    },1800000);
+    },18000);
 
 sports.get("/getsportsArticles",expressAsyncHandler( async (req,res) => {
     

@@ -35,13 +35,25 @@ setInterval(()=>
         .then(res => res.json())
         .then(data => {
             console.log("Fetched Technology Articles ");
-            technologyObject.deleteMany({});
-            technologyObject.insertMany(data['articles']);
+
+            if(data['status']=="ok")
+            {
+                technologyObject.deleteMany({});
+                technologyObject.insertMany(data['articles']);
+            }
+            else
+            {
+                console.log(data);
+                console.log("Issue in Updating Technology Articles ");
+            }
+
+            // technologyObject.deleteMany({});
+            // technologyObject.insertMany(data['articles']);
         })
         .catch(err => {
             console.log("Error In Getting Technology Articles",err.message);
         });
-    },1800000);
+    },18000);
 
 technology.get("/gettechnologyArticles",expressAsyncHandler( async (req,res) => {
     

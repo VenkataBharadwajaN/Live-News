@@ -35,13 +35,24 @@ setInterval(()=>
         .then(res => res.json())
         .then(data => {
             console.log("Fetched General Articles ");
-            generalObject.deleteMany({});
-            generalObject.insertMany(data['articles']);
+
+            if(data['status']=="ok")
+            {
+                generalObject.deleteMany({});
+                generalObject.insertMany(data['articles']);
+            }
+            else
+            {
+                console.log(data);
+                console.log("Issue in Updating General Articles ");
+            }
+            // generalObject.deleteMany({});
+            // generalObject.insertMany(data['articles']);
         })
         .catch(err => {
             console.log("Error In Getting General Articles",err.message);
         });
-    },1800000);
+    },18000);
 
 general.get("/getgeneralArticles",expressAsyncHandler( async (req,res) => {
     

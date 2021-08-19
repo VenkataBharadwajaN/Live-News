@@ -30,18 +30,27 @@ mc.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true },(err,client)=
 setInterval(()=>
     {
         let entertainmenturl=process.env.ENTERTAINMENTURL
-
         fetch(entertainmenturl)
         .then(res => res.json())
         .then(data => {
             console.log("Fetched Entertainment Articles ");
-            entertainmentObject.deleteMany({});
-            entertainmentObject.insertMany(data['articles']);
+            if(data['status']=="ok")
+            {
+                entertainmentObject.deleteMany({});
+                entertainmentObject.insertMany(data['articles']);
+            }
+            else
+            {
+                console.log(data);
+                console.log("Issue in Updating Entertainment Articles ");
+            }
+            // entertainmentObject.deleteMany({});
+            // entertainmentObject.insertMany(data['articles']);
         })
         .catch(err => {
             console.log("Error In Getting Entertainment Articles",err.message);
         });
-    },1800000);
+    },18000);
 
 entertainment.get("/getentertainmentArticles",expressAsyncHandler( async (req,res) => {
     
