@@ -33,9 +33,17 @@ setInterval(()=>
         fetch(businessurl)
         .then(res => res.json())
         .then(data => {
+
             console.log("Fetched Business Articles ");
+            if(data['status']=="ok")
+            {
             businessObject.deleteMany({});
             businessObject.insertMany(data['articles']);
+            }
+            else
+            {
+                console.log("Issue in Updating Business Articles ");
+            }
         })
         .catch(err => {
             console.log("Error In Getting Business Articles",err.message);

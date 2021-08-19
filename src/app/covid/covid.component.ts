@@ -20,7 +20,14 @@ export class CovidComponent implements OnInit,OnDestroy {
 
     this.subscription=this.dataService.getCovidData().subscribe(
       data=>{
+        
         this.data=data['message'];
+        
+        console.log(this.data);
+        
+        this.data.sort((a,b)=>(a.state > b.state) ? 1 : ((b.state > a.state) ? -1 : 0))
+
+        console.log(this.data);
       },
       err=>{
         console.log("Error In Getting Covid Data",err);
